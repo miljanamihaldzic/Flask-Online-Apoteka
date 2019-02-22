@@ -1,0 +1,23 @@
+{% extends 'layout.html'%}
+
+{% block body %}
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading">{{product.name}}</h2>
+        </br></br>
+            <p class="lead">{{product.description}}</p>
+        </br></br>
+            <button type="button" class="btn btn-outline-danger" disabled>{{product.price}} RSD</button>
+            
+        </br></br>
+            <a class="btn btn-lg btn-primary buy-button" id = "buy-button" product_id="{{product.id}}">Buy</a>
+        </div>
+    <div class="col-md-5 order-md-1">
+        <img class="featurette-image img-fluid mx-auto" src = "{{ url_for('static',filename = 'product_pics/' + product.image_file) }}" alt="Generic placeholder image">
+    </div>
+   
+      </div>
+      <hr class="featurette-divider">
+{% endblock %}

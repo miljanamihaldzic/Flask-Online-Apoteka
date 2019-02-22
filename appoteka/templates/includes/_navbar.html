@@ -1,0 +1,59 @@
+  <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About Us</a>
+          </li>     
+          {% if current_user.is_authenticated and current_user.role_id == 1 %}     
+          <li class="nav-item">
+              <a class="nav-link" href="/categories">Categories</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/category/new">Add Category <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/product/new">Add Product <span class="sr-only">(current)</span></a>
+            </li>
+        {% endif %}
+         </ul>
+
+
+        <ul class="navbar-nav mr-auto navbar-right my-2 my-lg-0">
+          {% if current_user.is_authenticated %}
+                  <li class="nav-item">
+                      <a class="nav-link disabled" href="#">Loged in as {{current_user.username}}</a>
+                    </li>
+                  {% if current_user.role_id == 2 %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/cart "> <img class="featurette-image img-fluid mx-auto cart-picture" id = "cart-picture" src = "{{ url_for('static',filename = 'cart/empty1.png') }}" ></a>
+                    </li>
+                  {% else %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/orders">Orders</a>
+                    </li>
+                  {% endif %}
+            <li class="nav-item active">
+                  <a class="nav-link" href="/account">Account</a>
+            </li>  
+            <li class="nav-item active">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
+          {% else %}
+            <li class="nav-item active">
+              <a class="nav-link" href="/register">Register</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/login">Login</a>
+            </li>
+          {% endif %}
+        </ul>
+       
+      </div>
+    </nav>

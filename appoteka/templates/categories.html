@@ -1,0 +1,19 @@
+{% extends 'layout.html'%}
+
+{% block body %}
+
+<h1>Categories</h1>
+
+<ul class="list-group">
+{% for c in categories %}
+
+<li class = "list-group-item">
+    
+    <img class="account-img" src="{{ url_for('static',filename = 'category_pics/' + c.image_file) }}">
+    <a href="/products/{{c.category_id}}">{{c.name}}</a>
+    <a class = "btn btn-default" href= "category/edit/{{c.id}}">Edit</a>
+    <a class = "btn btn-warning" href= "category/delete/{{c.id}}">Delete</a>
+</li>
+{% endfor %}
+</ul>
+{% endblock %}

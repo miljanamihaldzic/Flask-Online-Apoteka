@@ -1,0 +1,94 @@
+{% extends 'layout.html'%}
+
+{% from "includes/_formhelpers.html" import render_field %}
+{% block body %}
+
+
+<div class="row">
+    <div class="col-md-5 order-md-2 mb-4">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Your cart</span>
+        </h4>
+            <ul class="list-group mb-3">
+                {% for c in prod %}
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">{{c[1].name}}</h6>
+                            <small class="text-muted">{{c[0].quantity}} x </small>
+                        </div>
+                        <span class="text-muted">{{c[0].quantity * c[1].price}} RSD </span>
+                    </li>
+                {% endfor %}
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Total (RSD)</span>
+                    <strong>{{total}}</strong>
+                </li>
+          </ul>
+    </div>
+    
+
+    <div class="col-md-7 order-md-1">
+        <h4 class="mb-3">Personal informations</h4>
+        <form  method = "POST" action = "">
+            <div class="row">
+                <div class="col-md-6 mb-3 form-group">
+                    {{render_field(form.first_name, class="form-control")}}
+                </div>
+                <div class="col-md-6 mb-3 form-group">
+                    {{render_field(form.last_name, class="form-control")}}
+                </div>
+            </div>
+            
+            <div class="mb-3 form-group">
+                {{render_field(form.username, class="form-control")}}
+            </div>
+
+            <div class="mb-3 form-group">
+                {{render_field(form.email, class="form-control")}}
+            </div>
+
+            <div class="mb-3 form-group">
+                {{render_field(form.address, class="form-control")}}
+            </div>
+
+            <div class="row">
+                <div class="col-md-5 mb-3 form-group">
+                    {{render_field(form.country, class="form-control")}}
+                </div>
+                <div class="col-md-5 mb-3 form-group">
+                    {{render_field(form.zip_code, class="form-control")}}
+                </div>
+            </div>
+        
+
+            <h4 class="mb-3">Payment</h4>
+
+            <div class="d-block my-3 form-group">
+                {{render_field(form.payment_method, class="form-control")}}
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3 form-group">
+                    {{render_field(form.name_on_card, class="form-control")}}
+                    <small class="text-muted">Full name as displayed on card</small>
+                </div>
+                <div class="col-md-6 mb-3 form-group">
+                    {{render_field(form.credit_card_number, class="form-control")}}<div class="invalid-feedback">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 mb-3 form-group">
+                    {{render_field(form.expiration, class="form-control")}}
+                </div>
+                <div class="col-md-3 mb-3 form-group">
+                    {{render_field(form.cvv, class="form-control")}}
+                </div>
+            </div>
+            <hr class="mb-4 form-group">
+                {{form.submit(class="btn btn-primary btn-lg btn-block")}}
+        </form>
+    </div>
+</div>
+    
+     
+
+{% endblock %}

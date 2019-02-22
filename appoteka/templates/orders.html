@@ -1,0 +1,31 @@
+{% extends 'layout.html'%}
+
+{% block body %}
+
+    <h2>Orders</h2>
+          <div class="table-responsive">
+            <table class="table table-striped table-sm">
+              <thead>
+                <tr>
+                  <th>Order's id</th>
+                  <th>User</th>
+                  <th>Address</th>
+                  <th>Payment type</th>
+                  <th>Date and time of order</th>
+                </tr>
+              </thead>
+              <tbody>
+                  {% for o in orders %}
+                <tr>
+                  <td> {{o.id}}</td>
+                  <td>{{o.username}}</td>
+                  <td>{{o.address}}</td>
+                  <td>{{o.payment_method}}</td>
+                  <td>{{o.make_date}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'layout.html'%}
+
+
+{% block body %}
+
+{% if c %}
+<h1>{{c.name}}</h1>
+{% endif %}
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+
+        {% for p in products %}
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                        <a href="/product/{{p.id}}"><img class="card-img-top" src="{{ url_for('static',filename = 'product_pics/' + p.image_file) }}" alt="Card image cap"></a>
+                  <div class="card-body">
+                        <a href="/product/{{p.id}}"><p class="card-text">{{p.name}}</p></a>
+                    <p class="card-text">{{p.price}} RSD</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <a href="/product/{{p.id}}" class="btn btn-sm btn-outline-secondary">View</a>
+                        <a class="btn btn-sm btn-outline-secondary buy-button" id ="buy-button" product_id ="{{p.id}}">Buy</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+        {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
